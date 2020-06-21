@@ -9,10 +9,30 @@
 <h1>Sample Code</h1>
 <br/>
 <pre class="prettyprint"><code class="language-java">class Voila {
-public:
-  // Voila
-  static const string VOILA = "Voila";
+Setting up Heduko
+1. Heroku get Heroku toolbelt (go to virtual env)
+2. heroku --version
+3. Create proc Files
+  touch Procfile
+  ** add to file - flash is the name of the App
+  web: gunicorn flash.swgi
+4. pip install gunicorn
+5. pip install django_heroku
+6. pip install dj_database_url
+7. pip install python-decouple
+8. Change flash/settings.py file
+  import django_heroku
+  import dj_database_url
+  from decouple import config
+ add: 'whitenoise.middleware.WiteNoiseMiddleware'
+ to MIDDLEWARE = []
 
+ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+ django_heroku.settings(locals())
+
+ 9. pip freeze > requirements.txt
+ 10. git add .
   // will not interfere with embedded <a href="#voila2">tags</a>.
 }</pre>
 </body>
